@@ -4,11 +4,6 @@ package samcatweb
 
 import "log"
 
-type SAMWebConfig struct {
-	host string
-	port string
-}
-
 func (s *SAMWebConfig) Serve() {
 
 }
@@ -22,7 +17,7 @@ func NewSAMWebConfigFromOptions() (*SAMWebConfig, error) {
 
 func Serve() {
 	if webinterface, webinterfaceerr = samcatweb.NewSAMWebConfigFromOptions(); webinterfaceerr == nil {
-        log.Println("Starting web interface")
-        go webinterface.Serve()
+		log.Println("Starting web interface")
+		go webinterface.Serve()
 	}
 }
