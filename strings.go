@@ -6,7 +6,6 @@ type pagestring struct {
     dir string
 	url  string
 	desc string
-    fields func
 }
 
 var (
