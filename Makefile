@@ -1,3 +1,6 @@
+
+GOPATH=$(PWD)/.go
+
 echo:
 	@echo "$(GOPATH)"
 	find . -name "*.go" -exec gofmt -w {} \;
@@ -5,3 +8,6 @@ echo:
 
 build:
 	go build -a -tags netgo -ldflags '-w -extldflags "-static"'
+
+deps:
+	go get -u github.com/eyedeekay/sam-forwarder/manager
