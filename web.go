@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strings"
 )
 
 import "github.com/eyedeekay/sam-forwarder/manager"
@@ -38,22 +37,8 @@ func (s *SAMWebConfig) populate() {
 	}
 }
 
-func (p *SAMWebConfig) render_apiurl(s string) string {
-	query := s
-	r := stringify(p.manager.List(query)) + ""
-	return r
-}
-
-func (s SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
-	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "api/index.config"), "/", ",", -1)
-	log.Println("Responnding to the API request", r.URL.Path, s.render_apiurl(query))
-	fmt.Fprintln(w, s.render_apiurl(query))
-}
-
 func (s *SAMWebConfig) Serve() {
 	s.populate()
-	s.localService.HandleFunc("api/index.config", s.SayAPI)
-	log.Println("Registering control function for index API")
 	for _, i := range s.pages {
 		log.Println("Registering control function", i.URL())
 		s.localService.HandleFunc(i.URL(), i.Say)
