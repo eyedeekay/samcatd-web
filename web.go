@@ -30,21 +30,27 @@ func name(s string) string {
 
 func (s *SAMWebConfig) populate() {
 	for _, i := range *s.manager.List("") {
+		log.Println("Registering control page", name(i))
 		s.pages[0].PopulateChild(name(i), i)
 	}
 	for _, i := range *s.manager.List("ntcpserver") {
+		log.Println("Registering control page", name(i))
 		s.pages[1].PopulateChild(name(i), i)
 	}
 	for _, i := range *s.manager.List("httpserver") {
+		log.Println("Registering control page", name(i))
 		s.pages[2].PopulateChild(name(i), i)
 	}
 	for _, i := range *s.manager.List("ssuserver") {
+		log.Println("Registering control page", name(i))
 		s.pages[3].PopulateChild(name(i), i)
 	}
 	for _, i := range *s.manager.List("nctpclient") {
+		log.Println("Registering control page", name(i))
 		s.pages[4].PopulateChild(name(i), i)
 	}
 	for _, i := range *s.manager.List("ssuserver") {
+		log.Println("Registering control page", name(i))
 		s.pages[5].PopulateChild(name(i), i)
 	}
 }
@@ -110,12 +116,18 @@ func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 func (s *SAMWebConfig) Serve() {
 	s.populate()
 	s.localService.HandleFunc("index.html", s.Say)
+	log.Println("Registering control function for index")
 	s.localService.HandleFunc("api/index.config", s.SayAPI)
+	log.Println("Registering control function for index API")
 	for _, i := range s.pages {
+		log.Println("Registering control function", i.URL())
 		s.localService.HandleFunc(i.URL(), i.Say)
+		log.Println("Registering control API function", i.APIURL())
 		s.localService.HandleFunc(i.APIURL(), i.SayAPI)
 		for _, j := range i.children {
+			log.Println("Registering control function", j.URL())
 			s.localService.HandleFunc(j.URL(), j.Say)
+			log.Println("Registering control API function", j.APIURL())
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
 	}
