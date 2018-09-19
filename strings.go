@@ -93,7 +93,7 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
-	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
+	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.APIURL()), "/", ",", -1)
 	message := p.render_apiurl(query)
 	w.Write([]byte(message))
 }
