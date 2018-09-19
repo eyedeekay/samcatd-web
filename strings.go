@@ -110,14 +110,32 @@ func (p *pagestring) APIURL() string {
 	return "/" + strings.Replace(dedouble(p.dir+"/"+p.apiurl, "//", "/"), "./", "", -1)
 }
 
+func (p *pagestring) sub_div(val string) string {
+	split := strings.Split(val, "\n")
+	var r string
+	for _, v := range split {
+		splitagain := strings.Split(v, "=")
+		if len(splitagain) == 2 {
+			splitfinally := strings.Split(splitagain[0], ".")
+			r += "<div "
+			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
+			r += "id=\"" + makeid(condemit("_", splitfinally[0]), p.id) + "\" >"
+			r += splitagain[1]
+			r += "</div>"
+			r += "<br>"
+		}
+	}
+	return r
+}
+
 func (p *pagestring) render_div(s string) string {
 	query := p.class + "," + s
 	var r string
 	for _, val := range *p.manager.List(query) {
 		r += "<div "
-		r += "class=\"" + p.class + "\" "
+		r += "class=\"" + makeclass(s, p.class) + "\" "
 		r += "id=\"" + makeid(condemit("_", s), p.id) + "\" >"
-		r += strings.Replace(val, "\n", "<br>", -1)
+		r += p.sub_div(val)
 		r += "</div>"
 	}
 	return r

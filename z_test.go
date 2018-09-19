@@ -14,7 +14,7 @@ func TestAll(t *testing.T) {
 		sammanager.SetManagerWebPort("7958"),
 		sammanager.SetManagerFilePath("../sam-forwarder/etc/samcatd/tunnels.ini"),
 	); err == nil {
-		Serve(manager, "127.0.0.1", "7958")
+		go Serve(manager, "127.0.0.1", "7958")
 	} else {
 		t.Fatal(err)
 	}
