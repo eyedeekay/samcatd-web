@@ -80,10 +80,10 @@ func (p *SAMWebConfig) render_apiurl(s string) string {
 }
 
 func (s SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
+    log.Println("Responnding to the page request", r.URL.Path)
 	message := s.render_header()
 	message += r.URL.Path
 	message += s.render_footer()
-	log.Println("Responnding to the page request", r.URL.Path)
 	w.Write([]byte(message))
 }
 
@@ -112,6 +112,7 @@ func (s *SAMWebConfig) Serve() {
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
 	}
+    log.Println("Starting web service")
 	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
 		log.Fatal(err)
 	}
