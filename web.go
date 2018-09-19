@@ -22,7 +22,7 @@ func stringify(s *[]string) string {
 func name(s string) string {
 	for _, r := range strings.Split(s, "\n") {
 		if strings.Contains(r, "name") {
-			return strings.TrimPrefix("name=", r)
+			return strings.Trim(strings.Trim(strings.TrimPrefix("name=", r), " "), "\n")
 		}
 	}
 	return "NULL"
@@ -72,27 +72,33 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		}
 	}
 
-	s.pages = append(s.pages, &pagestring{dir: "./", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./",
+		lang: s.lang, title: s.title,
 		url: "index", apiurl: "api/index", desc: "SAMcatd Control Panel",
 		id: "control_panel", class: "", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		lang: s.lang, title: s.title,
 		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp server tunnels",
 		id: "ntcp_server", class: "server,ntcp", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		lang: s.lang, title: s.title,
 		url: "http", apiurl: "api/http", desc: "http/ntcp server tunnels",
 		id: "http_server", class: "server,http", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		lang: s.lang, title: s.title,
 		url: "ssu", apiurl: "api/ssu", desc: "ssu server tunnels",
 		id: "ssu_server", class: "server,ssu", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./client/", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./client/",
+		lang: s.lang, title: s.title,
 		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp client tunnels",
 		id: "ntcp_client", class: "client,ntcp", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./client/", lang: s.lang, title: s.title,
+	s.pages = append(s.pages, &pagestring{dir: "./client/",
+		lang: s.lang, title: s.title,
 		url: "ssu", apiurl: "api/ssu", desc: "ssu client tunnels",
 		id: "ssu_client", class: "client,ssu", manager: s.manager,
 	})
