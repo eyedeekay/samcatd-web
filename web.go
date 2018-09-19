@@ -98,8 +98,8 @@ func (s *SAMWebConfig) Serve() {
 	s.populate()
 	s.localService.HandleFunc("index", s.Say)
 	log.Println("Registering control function for index")
-	s.localService.HandleFunc("index.html", s.Say)
-	log.Println("Registering control function for index.html")
+	//s.localService.HandleFunc("index.html", s.Say)
+	//log.Println("Registering control function for index.html")
 	s.localService.HandleFunc("api/index.config", s.SayAPI)
 	log.Println("Registering control function for index API")
 	for _, i := range s.pages {
