@@ -12,7 +12,9 @@ type SAMWebConfig struct {
 	lang         string
 	title        string
 	csspath      string
+	cssstring    string
 	jspath       string
+	jsstring     string
 	pages        []*pagestring
 	manager      *sammanager.SAMManager
 	localService *http.ServeMux

@@ -4,6 +4,7 @@ package samcatweb
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -50,6 +51,13 @@ func (s *SAMWebConfig) Serve() {
 			log.Println("Registering control API function", j.APIURL())
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
+
+		s.localService.HandleFunc("/js/scripts.js", func(w http.ResponseWriter, r *http.Request) {
+			fmt.Fprintln(w, s.jsstring)
+		})
+		s.localService.HandleFunc("/css/styles.css", func(w http.ResponseWriter, r *http.Request) {
+			fmt.Fprintln(w, s.cssstring)
+		})
 	}
 	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Dave's not here man.")
@@ -65,6 +73,8 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 	s.host = "127.0.0.1"
 	s.port = "7957"
 	s.lang = "en"
+	s.jspath = ""
+	s.csspath = ""
 	s.title = "SAMcatd Web Console"
 	for _, o := range opts {
 		if err := o(&s); err != nil {
@@ -102,7 +112,20 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		url: "ssu", apiurl: "api/ssu", desc: "ssu client tunnels",
 		id: "ssu_client", class: "client,ssu", manager: s.manager,
 	})
-
+	if s.csspath != "" {
+		if b, err := ioutil.ReadFile(s.csspath); err == nil {
+			s.cssstring = string(b)
+		} else {
+			log.Fatal(err)
+		}
+	}
+	if s.jspath != "" {
+		if b, err := ioutil.ReadFile(s.jspath); err == nil {
+			s.jsstring = string(b)
+		} else {
+			log.Fatal(err)
+		}
+	}
 	s.localService = http.NewServeMux()
 	return &s, nil
 }
