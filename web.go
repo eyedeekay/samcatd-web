@@ -111,7 +111,7 @@ func (s *SAMWebConfig) Serve() {
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
 	}
-    s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Dave's not here man.")
 	})
 	log.Println("Starting web service")
