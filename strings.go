@@ -73,24 +73,24 @@ func makeurl(s, p string) string {
 }
 
 func (s *pagestring) render_header() string {
-	r := "<!doctype html>\n"
-	r += "<html lang=\"" + s.lang + "\">\n"
-	r += "<head>\n"
-	r += "  <meta charset=\"utf-8\">\n"
-	r += "  <title>" + s.title + "</title>\n"
-	r += "  <meta name=\"description\" content=\"" + s.title + "\">\n"
-	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
-	r += "</head>\n"
-	r += "<body>\n"
+	r := "<!doctype html>"
+	r += "<html lang=\"" + s.lang + "\">"
+	r += "<head>"
+	r += "  <meta charset=\"utf-8\">"
+	r += "  <title>" + s.title + "</title>"
+	r += "  <meta name=\"description\" content=\"" + s.title + "\">"
+	r += "  <meta name=\"author\" content=\"eyedeekay\">"
+	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">"
+	r += "</head>"
+	r += "<body>"
 	r += ""
 	return r
 }
 
 func (s *pagestring) render_footer() string {
-	r := "  <script src=\"js/scripts.js\"></script>\n"
-	r += "</body>\n"
-	r += "</html>\n"
+	r := "  <script src=\"js/scripts.js\"></script>"
+	r += "</body>"
+	r += "</html>"
 	r += ""
 	return r
 }
@@ -125,7 +125,7 @@ func (p *pagestring) render_div(s string) string {
 
 func (p *pagestring) render_apiurl(s string) string {
 	query := p.class + "," + s
-	r := stringify(p.manager.List(query)) + "\n"
+	r := stringify(p.manager.List(query)) + ""
 	return r
 }
 

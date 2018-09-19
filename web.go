@@ -38,53 +38,10 @@ func (s *SAMWebConfig) populate() {
 	}
 }
 
-func (s *SAMWebConfig) render_header() string {
-	r := "<!doctype html>\n"
-	r += "<html lang=\"" + s.lang + "\">\n"
-	r += "<head>\n"
-	r += "  <meta charset=\"utf-8\">\n"
-	r += "  <title>" + s.title + "</title>\n"
-	r += "  <meta name=\"description\" content=\"" + s.title + "\">\n"
-	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
-	r += "</head>\n"
-	r += "<body>\n"
-	r += ""
-	return r
-}
-
-func (s *SAMWebConfig) render_footer() string {
-	r := "  <script src=\"js/scripts.js\"></script>\n"
-	r += "</body>\n"
-	r += "</html>\n"
-	r += ""
-	return r
-}
-
-func (p *SAMWebConfig) render_div(s string) string {
-	query := s
-	var r string
-	for _, val := range *p.manager.List(query) {
-		r += "<div "
-		r += "class=\"" + s + "\" "
-		r += "id=\"" + condemit("_", s) + "\" >"
-		r += val
-		r += "</div>"
-	}
-	return r
-}
-
 func (p *SAMWebConfig) render_apiurl(s string) string {
 	query := s
-	r := stringify(p.manager.List(query)) + "\n"
+	r := stringify(p.manager.List(query)) + ""
 	return r
-}
-
-func (s SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
-	log.Println("Responnding to the page request", r.URL.Path)
-	fmt.Fprintln(w, s.render_header())
-	fmt.Fprintln(w, r.URL.Path)
-	fmt.Fprintln(w, s.render_footer())
 }
 
 func (s SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
@@ -95,8 +52,6 @@ func (s SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 
 func (s *SAMWebConfig) Serve() {
 	s.populate()
-	s.localService.HandleFunc("index.html", s.Say)
-	log.Println("Registering control function for index.html")
 	s.localService.HandleFunc("api/index.config", s.SayAPI)
 	log.Println("Registering control function for index API")
 	for _, i := range s.pages {
