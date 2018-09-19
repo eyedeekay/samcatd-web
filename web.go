@@ -96,12 +96,14 @@ func (s *SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
 	message := s.render_header()
 	message += s.render_div(query)
 	message += s.render_footer()
+	log.Println("Responnding to the page request", r.URL.Path)
 	w.Write([]byte(message))
 }
 
 func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "api/index.config"), "/", ",", -1)
 	message := s.render_apiurl(query)
+	log.Println("Responnding to the API request", r.URL.Path)
 	w.Write([]byte(message))
 }
 

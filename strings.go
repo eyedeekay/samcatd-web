@@ -3,6 +3,7 @@
 package samcatweb
 
 import (
+	"log"
 	"net/http"
 	"strings"
 )
@@ -89,11 +90,13 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	message := p.render_header()
 	message += p.render_div(query)
 	message += p.render_footer()
+	log.Println("Responnding to the page request", r.URL.Path)
 	w.Write([]byte(message))
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.APIURL()), "/", ",", -1)
 	message := p.render_apiurl(query)
+	log.Println("Responnding to the API request", r.URL.Path)
 	w.Write([]byte(message))
 }
