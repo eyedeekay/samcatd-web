@@ -106,7 +106,7 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		id: "http_server", class: "server,http", manager: s.manager,
 	})
 	s.pages = append(s.pages, &pagestring{dir: "./server/",
-		url: "ntcp", apiurl: "api/ssu", desc: "ssu server tunnels",
+		url: "ssu", apiurl: "api/ssu", desc: "ssu server tunnels",
 		id: "ssu_server", class: "server,ssu", manager: s.manager,
 	})
 	s.pages = append(s.pages, &pagestring{dir: "./client/",
@@ -114,7 +114,7 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		id: "ntcp_client", class: "client,ntcp", manager: s.manager,
 	})
 	s.pages = append(s.pages, &pagestring{dir: "./client/",
-		url: "ntcp", apiurl: "api/ssu", desc: "ssu client tunnels",
+		url: "ssu", apiurl: "api/ssu", desc: "ssu client tunnels",
 		id: "ssu_client", class: "client,ssu", manager: s.manager,
 	})
 
@@ -123,7 +123,11 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 }
 
 func Serve(s *sammanager.SAMManager) {
-	if webinterface, webinterfaceerr := NewSAMWebConfigFromOptions(); webinterfaceerr == nil {
+	if webinterface, webinterfaceerr := NewSAMWebConfigFromOptions(
+        SetHost("127.0.0.1"),
+        SetPort("7957"),
+        SetManager(s),
+    ); webinterfaceerr == nil {
 		log.Println("Starting web interface")
 		go webinterface.Serve()
 	}
