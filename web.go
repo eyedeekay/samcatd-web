@@ -10,24 +10,6 @@ import (
 
 import "github.com/eyedeekay/sam-forwarder/manager"
 
-func stringify(s *[]string) string {
-	var p string
-	for _, x := range *s {
-		p += x + ","
-	}
-	r := strings.Replace(p, ",,", ",", -1)
-	return r
-}
-
-func name(s string) string {
-	for _, r := range strings.Split(s, "\n") {
-		if strings.Contains(r, "name") {
-			return strings.Trim(strings.Trim(strings.TrimPrefix(r, "name="), " "), "\n")
-		}
-	}
-	return "NULL"
-}
-
 func (s *SAMWebConfig) populate() {
 	for _, i := range *s.manager.List("") {
 		log.Println("Registering control page", name(i))

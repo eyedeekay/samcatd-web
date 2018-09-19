@@ -19,6 +19,34 @@ func dedouble(s, t, u string) string {
 	}
 }
 
+func stringify(s *[]string) string {
+	var p string
+	for _, x := range *s {
+		p += x + ","
+	}
+	r := strings.Replace(p, ",,", ",", -1)
+	return r
+}
+
+func name(s string) string {
+	for _, r := range strings.Split(s, "\n") {
+		if strings.Contains(r, "name") {
+			name := strings.Replace(r, "name=", "", 1)
+			trimmedname := strings.Trim(name, " ")
+			returnedname := strings.Trim(trimmedname, "\n")
+			return returnedname
+		}
+	}
+	return "NULL"
+}
+
+func condemit(pr, s string) string {
+	if s != "" {
+		return pr + s
+	}
+	return ""
+}
+
 func (s *pagestring) render_header() string {
 	r := "<!doctype html>\n"
 	r += "<html lang=\"" + s.lang + "\">\n"
@@ -57,13 +85,6 @@ func (p *pagestring) URL() string {
 }
 func (p *pagestring) APIURL() string {
 	return p.dir + p.apiurl
-}
-
-func condemit(pr, s string) string {
-	if s != "" {
-		return pr + s
-	}
-	return ""
 }
 
 func (p *pagestring) render_div(s string) string {
