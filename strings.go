@@ -102,11 +102,11 @@ func (p *pagestring) PopulateChild(s, value string) {
 }
 
 func (p *pagestring) URL() string {
-	return dedouble(p.dir+"/"+p.url, "//", "/")
+	return strings.Replace(dedouble(p.dir+"/"+p.url, "//", "/"), "./", "", -1)
 }
 
 func (p *pagestring) APIURL() string {
-	return dedouble(p.dir+"/"+p.apiurl, "//", "/")
+	return strings.Replace(dedouble(p.dir+"/"+p.apiurl, "//", "/"), "./", "", -1)
 }
 
 func (p *pagestring) render_div(s string) string {
