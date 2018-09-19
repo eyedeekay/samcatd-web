@@ -29,7 +29,7 @@ func (s *pagestring) render_header() string {
 	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
 	r += "</head>\n"
 	r += "<body>\n"
-    r += ""
+	r += ""
 	return r
 }
 
@@ -37,7 +37,7 @@ func (s *pagestring) render_footer() string {
 	r := "  <script src=\"js/scripts.js\"></script>\n"
 	r += "</body>\n"
 	r += "</html>\n"
-    r += ""
+	r += ""
 	return r
 }
 
@@ -86,9 +86,9 @@ func (p *pagestring) render_apiurl(s string) string {
 
 func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
-    message := p.render_header()
+	message := p.render_header()
 	message += p.render_div(query)
-    message += p.render_footer()
+	message += p.render_footer()
 	w.Write([]byte(message))
 }
 
