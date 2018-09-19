@@ -2,12 +2,62 @@
 
 package samcatweb
 
-import "log"
+import (
+	"log"
+	"net/http"
+	"strings"
+)
 
 import "github.com/eyedeekay/sam-forwarder/manager"
 
-func (s *SAMWebConfig) Serve() {
+func stringify(s *[]string) string {
+	var p string
+	for _, x := range *s {
+		p += x + ","
+	}
+	r := strings.Replace(p, ",,", ",", -1)
+	return r
+}
 
+func name(s string) string {
+	for _, r := range strings.Split(s, "\n") {
+		if strings.Contains(r, "name") {
+			return strings.TrimPrefix("name=", r)
+		}
+	}
+	return "NULL"
+}
+
+func (s *SAMWebConfig) populate() {
+	for _, i := range *s.manager.List("") {
+		s.pages[0].PopulateChild(name(i), i)
+	}
+	for _, i := range *s.manager.List("ntcpserver") {
+		s.pages[1].PopulateChild(name(i), i)
+	}
+	for _, i := range *s.manager.List("httpserver") {
+		s.pages[2].PopulateChild(name(i), i)
+	}
+	for _, i := range *s.manager.List("ssuserver") {
+		s.pages[3].PopulateChild(name(i), i)
+	}
+	for _, i := range *s.manager.List("nctpclient") {
+		s.pages[4].PopulateChild(name(i), i)
+	}
+	for _, i := range *s.manager.List("ssuserver") {
+		s.pages[5].PopulateChild(name(i), i)
+	}
+}
+
+func (s *SAMWebConfig) Serve() {
+	s.populate()
+	for _, i := range s.pages {
+		s.localService.HandleFunc(i.URL(), i.Say)
+		s.localService.HandleFunc(i.APIURL(), i.SayAPI)
+	}
+	if err := http.ListenAndServe(s.host+""+s.port, s.localService); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func (s *SAMWebConfig) render_header() string {
@@ -42,12 +92,38 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 			return nil, err
 		}
 	}
+
+	s.pages = append(s.pages, &pagestring{dir: "./",
+		url: "index", apiurl: "api/index", desc: "SAMcatd Control Panel",
+		id: "control_panel", class: "", manager: s.manager,
+	})
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp server tunnels",
+		id: "ntcp_server", class: "server,ntcp", manager: s.manager,
+	})
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		url: "http", apiurl: "api/http", desc: "http/ntcp server tunnels",
+		id: "http_server", class: "server,http", manager: s.manager,
+	})
+	s.pages = append(s.pages, &pagestring{dir: "./server/",
+		url: "ntcp", apiurl: "api/ssu", desc: "ssu server tunnels",
+		id: "ssu_server", class: "server,ssu", manager: s.manager,
+	})
+	s.pages = append(s.pages, &pagestring{dir: "./client/",
+		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp client tunnels",
+		id: "ntcp_client", class: "client,ntcp", manager: s.manager,
+	})
+	s.pages = append(s.pages, &pagestring{dir: "./client/",
+		url: "ntcp", apiurl: "api/ssu", desc: "ssu client tunnels",
+		id: "ssu_client", class: "client,ssu", manager: s.manager,
+	})
+
+	s.localService = http.NewServeMux()
 	return &s, nil
 }
 
 func Serve(s *sammanager.SAMManager) {
-	if webinterface, webinterfaceerr = samcatweb.NewSAMWebConfigFromOptions(); webinterfaceerr == nil {
-		s.manager = s
+	if webinterface, webinterfaceerr := NewSAMWebConfigFromOptions(); webinterfaceerr == nil {
 		log.Println("Starting web interface")
 		go webinterface.Serve()
 	}

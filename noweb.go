@@ -1,4 +1,4 @@
-// -build webface
+// +build !webface
 
 package samcatweb
 

@@ -2,6 +2,13 @@
 
 package samcatweb
 
+import (
+	"fmt"
+	"strconv"
+)
+
+import "github.com/eyedeekay/sam-forwarder/manager"
+
 //Option is a SAMWebConfig Option
 type Option func(*SAMWebConfig) error
 
@@ -25,5 +32,12 @@ func SetPort(s string) func(*SAMWebConfig) error {
 			return nil
 		}
 		return fmt.Errorf("Invalid port")
+	}
+}
+
+func SetManager(s *sammanager.SAMManager) func(*SAMWebConfig) error {
+	return func(c *SAMWebConfig) error {
+		c.manager = s
+		return nil
 	}
 }
