@@ -79,16 +79,15 @@ func (p *SAMWebConfig) render_apiurl(s string) string {
 	return r
 }
 
-func (s *SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
-	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "index.html"), "/", ",", -1)
+func (s SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
 	message := s.render_header()
-	message += s.render_div(query)
+	message += r.URL.Path
 	message += s.render_footer()
 	log.Println("Responnding to the page request", r.URL.Path)
 	w.Write([]byte(message))
 }
 
-func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
+func (s SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "api/index.config"), "/", ",", -1)
 	message := s.render_apiurl(query)
 	log.Println("Responnding to the API request", r.URL.Path)
@@ -98,6 +97,8 @@ func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 func (s *SAMWebConfig) Serve() {
 	s.populate()
 	s.localService.HandleFunc("index.html", s.Say)
+	log.Println("Registering control function for index")
+	s.localService.HandleFunc("index", s.Say)
 	log.Println("Registering control function for index")
 	s.localService.HandleFunc("api/index.config", s.SayAPI)
 	log.Println("Registering control function for index API")
