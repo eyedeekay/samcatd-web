@@ -78,7 +78,7 @@ func (s *pagestring) render_header() string {
 	r += "<head>"
 	r += "  <meta charset=\"utf-8\">"
 	r += "  <title>" + s.title + "</title>"
-	r += "  <meta name=\"description\" content=\"" + s.title + "\">"
+	r += "  <meta name=\"description\" content=\"" + s.desc + "\">"
 	r += "  <meta name=\"author\" content=\"eyedeekay\">"
 	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">"
 	r += "</head>"
@@ -91,7 +91,7 @@ func (s *pagestring) render_footer() string {
 	r := "  <script src=\"js/scripts.js\"></script>"
 	r += "</body>"
 	r += "</html>"
-	r += ""
+	r += "\n"
 	return r
 }
 
@@ -116,8 +116,8 @@ func (p *pagestring) render_div(s string) string {
 	for _, val := range *p.manager.List(query) {
 		r += "<div "
 		r += "class=\"" + p.class + "\" "
-		r += "id=\"" + p.id + condemit("_", s) + "\" >"
-		r += val
+		r += "id=\"" + makeid(condemit("_", s), p.id) + "\" >"
+		r += strings.Replace(val, "\n", "<br>", -1)
 		r += "</div>"
 	}
 	return r

@@ -129,6 +129,6 @@ func Serve(s *sammanager.SAMManager, hp ...string) {
 		SetManager(s),
 	); webinterfaceerr == nil {
 		log.Println("Starting web interface")
-		go webinterface.Serve()
+		webinterface.Serve()
 	}
 }
