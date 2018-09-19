@@ -122,12 +122,27 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 	return &s, nil
 }
 
-func Serve(s *sammanager.SAMManager) {
+func Serve(s *sammanager.SAMManager, hp ...string) {
+	var host, port string
+	switch len(hp) {
+	case 0:
+		host = "127.0.0.1"
+		port = "7957"
+	case 1:
+		host = "127.0.0.1"
+		port = hp[0]
+	case 2:
+		host = hp[0]
+		port = hp[1]
+	default:
+		host = "127.0.0.1"
+		port = "7957"
+	}
 	if webinterface, webinterfaceerr := NewSAMWebConfigFromOptions(
-        SetHost("127.0.0.1"),
-        SetPort("7957"),
-        SetManager(s),
-    ); webinterfaceerr == nil {
+		SetHost(host),
+		SetPort(port),
+		SetManager(s),
+	); webinterfaceerr == nil {
 		log.Println("Starting web interface")
 		go webinterface.Serve()
 	}
