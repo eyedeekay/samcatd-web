@@ -15,4 +15,8 @@ func TestStringsLib(t *testing.T){
     if y != "test" {
         t.Fatal(y)
     }
+    z := stringify(&[]string{"test,,,test,,test,test,"})
+    if z != "test,test,test,test" {
+        t.Fatal(z)
+    }
 }

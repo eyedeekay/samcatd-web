@@ -12,7 +12,11 @@ func dedouble(s, t, u string) string {
 	v := s
 	for {
 		if !strings.Contains(v, t) {
-			return v
+            if len(v) > 1 {
+                return strings.TrimSuffix(v, u)
+            }else{
+                return v
+            }
 		} else {
 			v = strings.Replace(v, t, u, -1)
 		}
@@ -24,14 +28,14 @@ func stringify(s *[]string) string {
 	for _, x := range *s {
 		p += x + ","
 	}
-	r := strings.Replace(p, ",,", ",", -1)
+	r := dedouble(p, ",,", ",")
 	return r
 }
 
 func name(s string) string {
 	for _, r := range strings.Split(s, "\n") {
-		if strings.Contains(r, "name") {
-			name := strings.Replace(r, "name=", "", 1)
+		if strings.Contains(r, "name=") {
+			name := strings.Replace(r, "name=", "", -1)
 			trimmedname := strings.Trim(name, " ")
 			returnedname := strings.Trim(trimmedname, "\n")
 			return returnedname
