@@ -102,11 +102,11 @@ func (p *pagestring) PopulateChild(s, value string) {
 }
 
 func (p *pagestring) URL() string {
-	return p.dir + p.url
+	return p.dir + "/" + p.url
 }
 
 func (p *pagestring) APIURL() string {
-	return p.dir + p.apiurl
+	return p.dir + "/" + p.apiurl
 }
 
 func (p *pagestring) render_div(s string) string {
