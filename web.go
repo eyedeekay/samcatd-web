@@ -3,6 +3,7 @@
 package samcatweb
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -80,23 +81,21 @@ func (p *SAMWebConfig) render_apiurl(s string) string {
 }
 
 func (s SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
-    log.Println("Responnding to the page request", r.URL.Path)
-	message := s.render_header()
-	message += r.URL.Path
-	message += s.render_footer()
-	w.Write([]byte(message))
+	log.Println("Responnding to the page request", r.URL.Path)
+	fmt.Fprintln(w, s.render_header())
+	fmt.Fprintln(w, r.URL.Path)
+	fmt.Fprintln(w, s.render_footer())
 }
 
 func (s SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "api/index.config"), "/", ",", -1)
-	message := s.render_apiurl(query)
-	log.Println("Responnding to the API request", r.URL.Path)
-	w.Write([]byte(message))
+	log.Println("Responnding to the API request", r.URL.Path, s.render_apiurl(query))
+	fmt.Fprintln(w, s.render_apiurl(query))
 }
 
 func (s *SAMWebConfig) Serve() {
 	s.populate()
-    s.localService.HandleFunc("index.html", s.Say)
+	s.localService.HandleFunc("index.html", s.Say)
 	log.Println("Registering control function for index.html")
 	s.localService.HandleFunc("api/index.config", s.SayAPI)
 	log.Println("Registering control function for index API")
@@ -112,7 +111,7 @@ func (s *SAMWebConfig) Serve() {
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
 	}
-    log.Println("Starting web service")
+	log.Println("Starting web service")
 	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
 		log.Fatal(err)
 	}
