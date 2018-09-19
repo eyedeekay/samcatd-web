@@ -12,11 +12,11 @@ func dedouble(s, t, u string) string {
 	v := s
 	for {
 		if !strings.Contains(v, t) {
-            if len(v) > 1 {
-                return strings.TrimSuffix(v, u)
-            }else{
-                return v
-            }
+			if len(v) > 1 {
+				return strings.TrimSuffix(v, u)
+			} else {
+				return v
+			}
 		} else {
 			v = strings.Replace(v, t, u, -1)
 		}
@@ -51,6 +51,24 @@ func condemit(pr, s string) string {
 	return ""
 }
 
+func makeclass(s, p string) string {
+	replacedslashes := strings.Replace(p+s, "/", ",", -1)
+	replacedunderscores := strings.Replace(replacedslashes, "_", ",", -1)
+	return dedouble(replacedunderscores, ",,", ",")
+}
+
+func makeid(s, p string) string {
+	replacedslashes := strings.Replace(p+s, "/", "_", -1)
+	replacedcommas := strings.Replace(replacedslashes, ",", "_", -1)
+	return dedouble(replacedcommas, "__", "_")
+}
+
+func makeurl(s, p string) string {
+	replacedcommas := strings.Replace(p+s, ",", "/", -1)
+	replacedunderscores := strings.Replace(replacedcommas, "_", "/", -1)
+	return dedouble(replacedunderscores, "//", "/")
+}
+
 func (s *pagestring) render_header() string {
 	r := "<!doctype html>\n"
 	r += "<html lang=\"" + s.lang + "\">\n"
@@ -75,18 +93,16 @@ func (s *pagestring) render_footer() string {
 }
 
 func (p *pagestring) PopulateChild(s, value string) {
-	slashed := dedouble(strings.Replace(strings.Replace(s, ",", "/", -1), "_", "/", -1), "//", "/")
-	commaed := dedouble(strings.Replace(strings.Replace(s, "/", ",", -1), "_", ",", -1), ",,", ",")
-	underscored := dedouble(strings.Replace(strings.Replace(s, ",", "_", -1), "/", "_", -1), "__", "_")
 	p.children = append(p.children, &pagestring{dir: p.dir, title: p.title, lang: p.lang,
-		url: p.url + "/" + slashed, apiurl: p.apiurl + "/" + slashed, desc: p.desc + " : " + s + ":" + value,
-		id: p.id + "_" + underscored, class: p.class + "," + commaed, manager: p.manager,
+		url: makeurl(s, p.url), apiurl: makeurl(s, p.apiurl), desc: p.desc + " : " + s + ":" + value,
+		id: makeid(s, p.id), class: makeclass(s, p.id), manager: p.manager,
 	})
 }
 
 func (p *pagestring) URL() string {
 	return p.dir + p.url
 }
+
 func (p *pagestring) APIURL() string {
 	return p.dir + p.apiurl
 }
