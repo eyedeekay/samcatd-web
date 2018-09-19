@@ -55,7 +55,7 @@ func (s *SAMWebConfig) Serve() {
 		s.localService.HandleFunc(i.URL(), i.Say)
 		s.localService.HandleFunc(i.APIURL(), i.SayAPI)
 	}
-	if err := http.ListenAndServe(s.host+""+s.port, s.localService); err != nil {
+	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
 		log.Fatal(err)
 	}
 }
