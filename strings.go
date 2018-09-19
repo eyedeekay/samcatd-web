@@ -18,11 +18,34 @@ func dedouble(s, t, u string) string {
 	}
 }
 
+func (s *pagestring) render_header() string {
+	r := "<!doctype html>\n"
+	r += "<html lang=\"" + s.lang + "\">\n"
+	r += "<head>\n"
+	r += "  <meta charset=\"utf-8\">\n"
+	r += "  <title>" + s.title + "</title>\n"
+	r += "  <meta name=\"description\" content=\"" + s.title + "\">\n"
+	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
+	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
+	r += "</head>\n"
+	r += "<body>\n"
+    r += ""
+	return r
+}
+
+func (s *pagestring) render_footer() string {
+	r := "  <script src=\"js/scripts.js\"></script>\n"
+	r += "</body>\n"
+	r += "</html>\n"
+    r += ""
+	return r
+}
+
 func (p *pagestring) PopulateChild(s, value string) {
 	slashed := dedouble(strings.Replace(strings.Replace(s, ",", "/", -1), "_", "/", -1), "//", "/")
 	commaed := dedouble(strings.Replace(strings.Replace(s, "/", ",", -1), "_", ",", -1), ",,", ",")
 	underscored := dedouble(strings.Replace(strings.Replace(s, ",", "_", -1), "/", "_", -1), "__", "_")
-	p.children = append(p.children, &pagestring{dir: p.dir,
+	p.children = append(p.children, &pagestring{dir: p.dir, title: p.title, lang: p.lang,
 		url: p.url + "/" + slashed, apiurl: p.apiurl + "/" + slashed, desc: p.desc + " : " + s + ":" + value,
 		id: p.id + "_" + underscored, class: p.class + "," + commaed, manager: p.manager,
 	})
@@ -63,7 +86,9 @@ func (p *pagestring) render_apiurl(s string) string {
 
 func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
-	message := p.render_div(query)
+    message := p.render_header()
+	message += p.render_div(query)
+    message += p.render_footer()
 	w.Write([]byte(message))
 }
 

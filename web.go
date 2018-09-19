@@ -60,27 +60,6 @@ func (s *SAMWebConfig) Serve() {
 	}
 }
 
-func (s *SAMWebConfig) render_header() string {
-	r := "<!doctype html>\n"
-	r += "<html lang=\"" + s.lang + "\">\n"
-	r += "<head>\n"
-	r += "  <meta charset=\"utf-8\">\n"
-	r += "  <title>" + s.title + "</title>\n"
-	r += "  <meta name=\"description\" content=\"" + s.title + "\">\n"
-	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
-	r += "</head>\n"
-	r += "<body>\n"
-	return r
-}
-
-func (s *SAMWebConfig) render_footer() string {
-	r := "  <script src=\"js/scripts.js\"></script>\n"
-	r += "</body>\n"
-	r += "</html>\n"
-	return r
-}
-
 func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfig, error) {
 	var s SAMWebConfig
 	s.host = "127.0.0.1"
@@ -93,27 +72,27 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		}
 	}
 
-	s.pages = append(s.pages, &pagestring{dir: "./",
+	s.pages = append(s.pages, &pagestring{dir: "./", lang: s.lang, title: s.title,
 		url: "index", apiurl: "api/index", desc: "SAMcatd Control Panel",
 		id: "control_panel", class: "", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/",
+	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
 		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp server tunnels",
 		id: "ntcp_server", class: "server,ntcp", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/",
+	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
 		url: "http", apiurl: "api/http", desc: "http/ntcp server tunnels",
 		id: "http_server", class: "server,http", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./server/",
+	s.pages = append(s.pages, &pagestring{dir: "./server/", lang: s.lang, title: s.title,
 		url: "ssu", apiurl: "api/ssu", desc: "ssu server tunnels",
 		id: "ssu_server", class: "server,ssu", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./client/",
+	s.pages = append(s.pages, &pagestring{dir: "./client/", lang: s.lang, title: s.title,
 		url: "ntcp", apiurl: "api/ntcp", desc: "ntcp client tunnels",
 		id: "ntcp_client", class: "client,ntcp", manager: s.manager,
 	})
-	s.pages = append(s.pages, &pagestring{dir: "./client/",
+	s.pages = append(s.pages, &pagestring{dir: "./client/", lang: s.lang, title: s.title,
 		url: "ssu", apiurl: "api/ssu", desc: "ssu client tunnels",
 		id: "ssu_client", class: "client,ssu", manager: s.manager,
 	})

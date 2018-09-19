@@ -23,6 +23,8 @@ type pagestring struct {
 	desc     string
 	id       string
 	class    string
+    title    string
+    lang     string
 	manager  *sammanager.SAMManager
 	children []*pagestring
 }
