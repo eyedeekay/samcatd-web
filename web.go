@@ -22,7 +22,7 @@ func stringify(s *[]string) string {
 func name(s string) string {
 	for _, r := range strings.Split(s, "\n") {
 		if strings.Contains(r, "name") {
-			return strings.Trim(strings.Trim(strings.TrimPrefix("name=", r), " "), "\n")
+			return strings.Trim(strings.Trim(strings.TrimPrefix(r, "name="), , " "), "\n")
 		}
 	}
 	return "NULL"
