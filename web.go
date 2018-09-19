@@ -49,11 +49,72 @@ func (s *SAMWebConfig) populate() {
 	}
 }
 
+func (s *SAMWebConfig) render_header() string {
+	r := "<!doctype html>\n"
+	r += "<html lang=\"" + s.lang + "\">\n"
+	r += "<head>\n"
+	r += "  <meta charset=\"utf-8\">\n"
+	r += "  <title>" + s.title + "</title>\n"
+	r += "  <meta name=\"description\" content=\"" + s.title + "\">\n"
+	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
+	r += "  <link rel=\"stylesheet\" href=\"css/styles.css\">\n"
+	r += "</head>\n"
+	r += "<body>\n"
+	r += ""
+	return r
+}
+
+func (s *SAMWebConfig) render_footer() string {
+	r := "  <script src=\"js/scripts.js\"></script>\n"
+	r += "</body>\n"
+	r += "</html>\n"
+	r += ""
+	return r
+}
+
+func (p *SAMWebConfig) render_div(s string) string {
+	query := p.class + "," + s
+	var r string
+	for _, val := range *p.manager.List(query) {
+		r += "<div "
+		r += "class=\"" + p.class + "\" "
+		r += "id=\"" + p.id + condemit("_", s) + "\" >"
+		r += val
+		r += "</div>"
+	}
+	return r
+}
+
+func (p *SAMWebConfig) render_apiurl(s string) string {
+	query := p.class + "," + s
+	r := stringify(p.manager.List(query)) + "\n"
+	return r
+}
+
+func (s *SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
+	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
+	message := s.render_header()
+	message += s.render_div(query)
+	message += s.render_footer()
+	w.Write([]byte(message))
+}
+
+func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
+	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
+	message := s.render_apiurl(query)
+	w.Write([]byte(message))
+}
+
 func (s *SAMWebConfig) Serve() {
 	s.populate()
+	s.localService.HandleFunc("index", s.Say)
 	for _, i := range s.pages {
 		s.localService.HandleFunc(i.URL(), i.Say)
 		s.localService.HandleFunc(i.APIURL(), i.SayAPI)
+		for _, j := range i.children {
+			s.localService.HandleFunc(j.URL(), j.Say)
+			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
+		}
 	}
 	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
 		log.Fatal(err)
