@@ -41,3 +41,17 @@ func SetManager(s *sammanager.SAMManager) func(*SAMWebConfig) error {
 		return nil
 	}
 }
+
+func SetCSSPath(s string) func(*SAMWebConfig) error {
+	return func(c *SAMWebConfig) error {
+		c.csspath = s
+		return nil
+	}
+}
+
+func SetJSPath(s string) func(*SAMWebConfig) error {
+	return func(c *SAMWebConfig) error {
+		c.jspath = s
+		return nil
+	}
+}

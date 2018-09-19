@@ -127,6 +127,8 @@ func Serve(s *sammanager.SAMManager, cssfile, jsfile string, hp ...string) {
 		SetHost(host),
 		SetPort(port),
 		SetManager(s),
+		SetCSSPath(cssfile),
+		SetJSPath(jsfile),
 	); webinterfaceerr == nil {
 		log.Println("Starting web interface")
 		webinterface.Serve()
