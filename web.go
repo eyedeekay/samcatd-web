@@ -73,12 +73,12 @@ func (s *SAMWebConfig) render_footer() string {
 }
 
 func (p *SAMWebConfig) render_div(s string) string {
-	query := p.class + "," + s
+	query := s
 	var r string
 	for _, val := range *p.manager.List(query) {
 		r += "<div "
-		r += "class=\"" + p.class + "\" "
-		r += "id=\"" + p.id + condemit("_", s) + "\" >"
+		r += "class=\"" + s + "\" "
+		r += "id=\"" + condemit("_", s) + "\" >"
 		r += val
 		r += "</div>"
 	}
@@ -86,13 +86,13 @@ func (p *SAMWebConfig) render_div(s string) string {
 }
 
 func (p *SAMWebConfig) render_apiurl(s string) string {
-	query := p.class + "," + s
+	query := s
 	r := stringify(p.manager.List(query)) + "\n"
 	return r
 }
 
 func (s *SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
-	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
+	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "index.html"), "/", ",", -1)
 	message := s.render_header()
 	message += s.render_div(query)
 	message += s.render_footer()
@@ -100,14 +100,15 @@ func (s *SAMWebConfig) Say(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *SAMWebConfig) SayAPI(w http.ResponseWriter, r *http.Request) {
-	query := strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1)
+	query := strings.Replace(strings.TrimPrefix(r.URL.Path, "api/index.config"), "/", ",", -1)
 	message := s.render_apiurl(query)
 	w.Write([]byte(message))
 }
 
 func (s *SAMWebConfig) Serve() {
 	s.populate()
-	s.localService.HandleFunc("index", s.Say)
+	s.localService.HandleFunc("index.html", s.Say)
+	s.localService.HandleFunc("api/index.config", s.SayAPI)
 	for _, i := range s.pages {
 		s.localService.HandleFunc(i.URL(), i.Say)
 		s.localService.HandleFunc(i.APIURL(), i.SayAPI)
