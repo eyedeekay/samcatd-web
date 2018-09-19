@@ -57,7 +57,7 @@ func condemit(pr, s string) string {
 func makeclass(s, p string) string {
 	replacedslashes := strings.Replace(p+","+s, "/", ",", -1)
 	replacedunderscores := strings.Replace(replacedslashes, "_", ",", -1)
-	return dedouble(replacedunderscores, ",,", ",")
+	return strings.TrimPrefix(dedouble(replacedunderscores, ",,", ","), ",")
 }
 
 func makeid(s, p string) string {
@@ -98,7 +98,7 @@ func (s *pagestring) render_footer() string {
 func (p *pagestring) PopulateChild(s, value string) {
 	p.children = append(p.children, &pagestring{dir: p.dir, title: p.title, lang: p.lang,
 		url: makeurl(s, p.url), apiurl: makeurl(s, p.apiurl), desc: p.desc + " : " + s + ":" + value,
-		id: makeid(s, p.id), class: makeclass(s, p.id), manager: p.manager,
+		id: makeid(s, p.id), class: makeclass(s, p.class), manager: p.manager,
 	})
 }
 

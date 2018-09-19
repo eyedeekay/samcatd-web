@@ -107,7 +107,7 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 	return &s, nil
 }
 
-func Serve(s *sammanager.SAMManager, hp ...string) {
+func Serve(s *sammanager.SAMManager, cssfile, jsfile string, hp ...string) {
 	var host, port string
 	switch len(hp) {
 	case 0:
