@@ -24,6 +24,11 @@ func defaultCSS() string {
 		"  background-color: #0e1111;\n" +
 		"  width: 420px;\n" +
 		"}\n" +
+		".parent {\n" +
+		"  margin-left: 60px;\n" +
+		"  background-color: #0e1111;\n" +
+		"  color: #9789a7;\n" +
+		"}\n" +
 		"\n"
 	return r
 }
