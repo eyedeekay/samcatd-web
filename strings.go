@@ -81,6 +81,9 @@ func render_header(title, lang, desc string) string {
 	r += "    <title>" + title + "</title>\n"
 	r += "    <meta name=\"description\" content=\"" + desc + "\">\n"
 	r += "    <meta name=\"author\" content=\"eyedeekay\">\n"
+    r += "    <style>"
+    r += defaultCSS()
+    r += "    </style>"
 	r += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\" media=\"screen\" />\n"
 	r += "  </head>\n"
 	r += "  <body>\n"
