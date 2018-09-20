@@ -66,7 +66,7 @@ func defaultCSS() string {
 		"  margin-left: 4%;\n" +
 		"  border: dotted;\n" +
 		"  background: #0e1111;\n" +
-		"  width: 65%;\n" +
+		"  width: 95%;\n" +
 		"  color: #9789a7;\n" +
 		"}\n" +
 		"#toolbar {\n" +
