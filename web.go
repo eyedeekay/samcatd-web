@@ -52,13 +52,13 @@ func (s *SAMWebConfig) Serve() {
 			s.localService.HandleFunc(j.APIURL(), j.SayAPI)
 		}
 
-		s.localService.HandleFunc("/js/scripts.js", func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, s.jsstring)
-		})
-		s.localService.HandleFunc("/css/styles.css", func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintln(w, s.cssstring)
-		})
 	}
+	s.localService.HandleFunc("/js/scripts.js", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, s.jsstring)
+	})
+	s.localService.HandleFunc("/css/styles.css", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, s.cssstring)
+	})
 	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Dave's not here man.")
 	})
