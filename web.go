@@ -55,13 +55,16 @@ func (s *SAMWebConfig) Serve() {
 	}
 	s.localService.HandleFunc("/js/scripts.js", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, s.jsstring)
+		return
 	})
 	s.localService.HandleFunc("/css/styles.css", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, s.cssstring)
+		return
 	})
 	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, render_bar())
 		fmt.Fprintln(w, "Dave's not here man.")
+		return
 	})
 	log.Println("Starting web service")
 	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
