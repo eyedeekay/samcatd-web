@@ -11,8 +11,8 @@ func defaultCSS() string {
 		"  text-align: center;\n" +
 		"  border: dotted;\n" +
 		"  width: 20%\n" +
-		"  color: #9789a7;\n" +
-		"  border-color: #313b3b;\n" +
+		"  color: #84aca8;\n" +
+		"  background-color: #313b3b;\n" +
 		"}\n" +
 		".btn {\n" +
 		"  text-align: center;\n" +
