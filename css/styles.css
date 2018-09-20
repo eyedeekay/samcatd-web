@@ -2,57 +2,53 @@ body {
   background: #0e1111;
   color: #84aca8;
 }
-
 .btn {
   text-align: center;
   border: dotted;
   border-color: #9789a7;
   width: 111px;
 }
-
 .inbound {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
 .outbound {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
 .i2cp {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
 .base32 {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
 .base64 {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
 .type {
   text-align: right;
   border: dotted;
   border-color: #9789a7;
 }
-
+.dest {
+  text-align: right;
+  border: dotted;
+  border-color: #9789a7;
+}
 .parent {
   margin-left: 60px;
   border: dotted;
   background: #0e1111;
   color: #9789a7;
 }
-
 #toolbar {
   margin-left: auto;
   margin-right: auto;
@@ -60,3 +56,5 @@ body {
   background: #313b3b;
   width: 666px;
 }
+
+

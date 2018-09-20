@@ -14,3 +14,6 @@ deps:
 
 test:
 	go test -tags webface
+
+cssfile:
+	cd css && ./snippet.sh

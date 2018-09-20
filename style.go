@@ -43,6 +43,11 @@ func defaultCSS() string {
 		"  border: dotted;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
+		".dest {\n" +
+		"  text-align: right;\n" +
+		"  border: dotted;\n" +
+		"  border-color: #9789a7;\n" +
+		"}\n" +
 		".parent {\n" +
 		"  margin-left: 60px;\n" +
 		"  border: dotted;\n" +
