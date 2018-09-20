@@ -49,7 +49,7 @@ func name(s string) string {
 
 func condemit(pr, s string) string {
 	if s != "" {
-		return pr + s
+		return strings.Trim(pr+s, " ")
 	}
 	return ""
 }
@@ -57,13 +57,13 @@ func condemit(pr, s string) string {
 func makeclass(s, p string) string {
 	replacedslashes := strings.Replace(p+","+s, "/", ",", -1)
 	replacedunderscores := strings.Replace(replacedslashes, "_", ",", -1)
-	return strings.TrimPrefix(dedouble(replacedunderscores, ",,", ","), ",")
+	return strings.Trim(strings.TrimPrefix(dedouble(replacedunderscores, ",,", ","), ","), " ")
 }
 
 func makeid(s, p string) string {
 	replacedslashes := strings.Replace(p+"_"+s, "/", "_", -1)
 	replacedcommas := strings.Replace(replacedslashes, ",", "_", -1)
-	return dedouble(replacedcommas, "__", "_")
+	return strings.Trim(dedouble(replacedcommas, "__", "_"), " ")
 }
 
 func makeurl(s, p string) string {
