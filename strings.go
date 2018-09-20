@@ -190,12 +190,10 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, render_bar())
 	fmt.Fprintln(w, p.render_div(query))
 	fmt.Fprintln(w, render_footer())
-	return
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.APIURL()), "/", ",", -1), ",,", ",")
 	log.Println("Responding to the API request", r.URL.Path, p.render_apiurl(query))
 	fmt.Fprintln(w, p.render_apiurl(query))
-	return
 }
