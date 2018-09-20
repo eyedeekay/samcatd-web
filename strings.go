@@ -80,7 +80,7 @@ func (s *pagestring) render_header() string {
 	r += "  <title>" + s.title + "</title>"
 	r += "  <meta name=\"description\" content=\"" + s.desc + "\">"
 	r += "  <meta name=\"author\" content=\"eyedeekay\">"
-	r += "  <link rel=\"stylesheet\" href=\"/css/styles.css\">"
+	r += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\">"
 	r += "</head>"
 	r += "<body>"
 	r += ""
