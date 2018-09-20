@@ -37,6 +37,7 @@ func defaultCSS() string {
 		"  border: dotted;\n" +
 		"  border-color: #9789a7;\n" +
 		"  width: 12%;\n" +
+		"  min-width: 12%;\n" +
 		"}\n" +
 		".content {\n" +
 		"  position: relative;\n" +
