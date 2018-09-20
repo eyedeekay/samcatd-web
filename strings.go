@@ -154,7 +154,7 @@ func (p *pagestring) render_div(s string) string {
 		r += "class=\"" + makeclass(s, p.class+",parent") + "\" "
 		r += "id=\"" + makeid(condemit("_", s), p.id) + "\"> "
 		r += p.sub_div(val)
-		r += "</div>\n"
+		r += "  </div>\n"
 	}
 	return r
 }
