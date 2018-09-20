@@ -80,7 +80,7 @@ func render_header(title, lang, desc string) string {
 	r += "  <title>" + title + "</title>\n"
 	r += "  <meta name=\"description\" content=\"" + desc + "\">\n"
 	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\"/>\n"
+	r += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\"/>\n"
 	r += "</head>\n"
 	r += "<body>\n"
 	r += "\n"
