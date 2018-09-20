@@ -60,10 +60,10 @@ func (s *SAMWebConfig) Serve() {
 		fmt.Fprintln(w, s.cssstring)
 	})
 	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintln(w, render_header("Page Not Found", "", "404 not found"))
+		fmt.Fprintln(w, render_header("Page Not Found", "", "404 not found"))
 		fmt.Fprintln(w, render_bar())
 		fmt.Fprintln(w, "Dave's not here man.")
-        fmt.Fprintln(w, render_footer())
+		fmt.Fprintln(w, render_footer())
 	})
 	log.Println("Starting web service")
 	if err := http.ListenAndServe(s.host+":"+s.port, s.localService); err != nil {
