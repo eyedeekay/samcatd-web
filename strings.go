@@ -87,8 +87,9 @@ func (s *pagestring) render_header() string {
 	return r
 }
 
-func (s *pagestring) render_bar() string {
+func render_bar() string {
 	r := "<div id=\"toolbar\" class=\"toolbar\">"
+	r += "<a href=\"/index\" id=\"btn_index\" class=\"btn\"> Home </a>"
 	r += "<a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>"
 	r += "<a href=\"/server/http\" id=\"btn_httpserver\" class=\"btn\"> HTTP Server </a>"
 	r += "<a href=\"/server/ssu\" id=\"btn_ssuserver\" class=\"btn\"> SSU Server </a>"
@@ -168,7 +169,7 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1), ",,", ",")
 	log.Println("Responding to the page request", r.URL.Path)
 	fmt.Fprintln(w, p.render_header())
-	fmt.Fprintln(w, p.render_bar())
+	fmt.Fprintln(w, render_bar())
 	fmt.Fprintln(w, p.render_div(query))
 	fmt.Fprintln(w, p.render_footer())
 }

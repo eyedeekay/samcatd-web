@@ -9,3 +9,11 @@ func defaultJS() string {
 		""
 	return r
 }
+
+func defaultCSS() string {
+	r := "" +
+		"" +
+		"" +
+		""
+	return r
+}

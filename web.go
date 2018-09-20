@@ -60,6 +60,7 @@ func (s *SAMWebConfig) Serve() {
 		fmt.Fprintln(w, s.cssstring)
 	})
 	s.localService.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, render_bar())
 		fmt.Fprintln(w, "Dave's not here man.")
 	})
 	log.Println("Starting web service")
