@@ -140,18 +140,18 @@ func (p *pagestring) sub_div(val string) string {
 		splitagain := strings.Split(v, "=")
 		if len(splitagain) == 2 {
 			splitfinally := strings.Split(splitagain[0], ".")
-			noleader := strings.Split(splitagain[0], ".")
+			noleader := strings.Split(splitfinally[0], ".")
 			n := noleader[0]
 			if len(noleader) == 2 {
 				n = noleader[1]
 			}
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class+",label") + "\" "
+			r += "class=\"" + makeclass(n, p.class+",label") + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id+"_label") + "\" >"
 			r += n + " : "
 			r += "</div> "
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class+",content") + "\" "
+			r += "class=\"" + makeclass(n, p.class+",content") + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
 			r += splitagain[1]
 			r += "</div> \n"
