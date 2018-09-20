@@ -64,7 +64,7 @@ func makeid(s, p string) string {
 	replacedslashes := strings.Replace(p+"_"+s, "/", "_", -1)
 	replacedcommas := strings.Replace(replacedslashes, ",", "_", -1)
     replacedperiods := strings.Replace(replacedcommas, ".", "_", -1)
-	return strings.Replace(dedouble(replacedcommas, "__", "_"), " ", "", -1)
+	return strings.Replace(dedouble(replacedperiods, "__", "_"), " ", "", -1)
 }
 
 func makeurl(s, p string) string {
