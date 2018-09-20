@@ -137,11 +137,16 @@ func (p *pagestring) sub_div(val string) string {
 	split := strings.Split(val, "\n")
 	var r string
 	for _, v := range split {
+        log.Println("processing tunnel", v)
 		if len(strings.SplitN(v, "=", 2)) == 2 {
 			prefix := strings.SplitN(v, "=", 2)[0]
+            log.Println("full category", prefix)
 			name := strings.SplitN(v, "=", 2)[1]
+            log.Println("item name", name)
 			splitprefix := strings.Split(prefix, " ")
+            log.Println("trimmed category", splitprefix)
 			option := splitprefix[len(splitprefix)-1]
+            log.Println("classifier", option)
 			r += "    <div "
 			r += "class=\"" + makeclass(option, p.class+",label") + "\" "
 			r += "id=\"" + makeid(condemit("_", name), p.id+"_label") + "\" >"
@@ -180,9 +185,13 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1), ",,", ",")
 	log.Println("Responding to the page request", r.URL.Path)
 	fmt.Fprintln(w, render_header(p.title, p.lang, p.desc))
+    log.Println("header sent")
 	fmt.Fprintln(w, render_bar())
+    log.Println("toolbar sent")
 	fmt.Fprintln(w, p.render_div(query))
+    log.Println("content sent")
 	fmt.Fprintln(w, render_footer())
+    log.Println("footer sent")
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
