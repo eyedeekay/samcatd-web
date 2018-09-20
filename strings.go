@@ -81,9 +81,9 @@ func render_header(title, lang, desc string) string {
 	r += "    <title>" + title + "</title>\n"
 	r += "    <meta name=\"description\" content=\"" + desc + "\">\n"
 	r += "    <meta name=\"author\" content=\"eyedeekay\">\n"
-    r += "    <style>"
-    r += defaultCSS()
-    r += "    </style>"
+	r += "    <style>"
+	r += defaultCSS()
+	r += "    </style>"
 	r += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\" media=\"screen\" />\n"
 	r += "  </head>\n"
 	r += "  <body>\n"
@@ -141,8 +141,13 @@ func (p *pagestring) sub_div(val string) string {
 			splitfinally := strings.Split(splitagain[0], ".")
 			r += "    <div "
 			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
+			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id+"_label") + "\" >"
+			r += splitagain[0] + " : "
+			r += "</div> "
+			r += "    <div "
+			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
-			r += splitagain[0] + " : " + splitagain[1]
+			r += splitagain[1]
 			r += "</div> \n"
 		}
 	}
