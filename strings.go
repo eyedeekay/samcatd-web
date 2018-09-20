@@ -72,13 +72,13 @@ func makeurl(s, p string) string {
 	return dedouble(replacedunderscores, "//", "/")
 }
 
-func (s *pagestring) render_header() string {
+func render_header(title, lang, desc string) string {
 	r := "<!doctype html>"
-	r += "<html lang=\"" + s.lang + "\">"
+	r += "<html lang=\"" + lang + "\">"
 	r += "<head>"
 	r += "  <meta charset=\"utf-8\">"
-	r += "  <title>" + s.title + "</title>"
-	r += "  <meta name=\"description\" content=\"" + s.desc + "\">"
+	r += "  <title>" + title + "</title>"
+	r += "  <meta name=\"description\" content=\"" + desc + "\">"
 	r += "  <meta name=\"author\" content=\"eyedeekay\">"
 	r += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\">"
 	r += "</head>"
@@ -105,7 +105,7 @@ func render_bar() string {
 	return r
 }
 
-func (s *pagestring) render_footer() string {
+func render_footer() string {
 	r := "  <script src=\"/js/scripts.js\"></script>"
 	r += "</body>"
 	r += "</html>"
@@ -167,10 +167,10 @@ func (p *pagestring) render_apiurl(s string) string {
 func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1), ",,", ",")
 	log.Println("Responding to the page request", r.URL.Path)
-	fmt.Fprintln(w, p.render_header())
+	fmt.Fprintln(w, render_header(p.title, p.lang, p.desc))
 	fmt.Fprintln(w, render_bar())
 	fmt.Fprintln(w, p.render_div(query))
-	fmt.Fprintln(w, p.render_footer())
+	fmt.Fprintln(w, render_footer())
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
