@@ -2,63 +2,9 @@ body {
   background: #0e1111;
   color: #84aca8;
 }
-.label {
-  text-align: center;
-  border: dotted;
-  width: 20%
-  color: #84aca8;
-  background-color: #313b3b;
-}
-.btn {
-  text-align: center;
-  border: dotted;
-  border-color: #9789a7;
-  width: 111px;
-}
-.inbound {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.outbound {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.i2cp {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.base32 {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.base64 {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.type {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
-.dest {
-  text-align: right;
-  border: dotted;
-  width: 65%;
-  border-color: #9789a7;
-}
 .parent {
-  margin-left: 4%;
+  margin-left: auto;
+  margin-right: auto;
   border: dotted;
   background: #0e1111;
   width: 95%;
@@ -69,7 +15,48 @@ body {
   margin-right: auto;
   text-align: center;
   background: #313b3b;
-  width: 666px;
+  width: 60%;
+}
+.label {
+  float: left;
+  text-align: left;
+  border: dotted;
+  width: 20%
+  color: #84aca8;
+  background: #313b3b;
+}
+.btn {
+  text-align: center;
+  border: dotted;
+  border-color: #9789a7;
+  width: 12%;
+}
+.content {
+  text-align: right;
+  border: dotted;
+  width: 65%;
+  border-color: #9789a7;
+}
+.inbound {
+  background: #313b3b;
+}
+.outbound {
+  background: #9789a7;
+}
+.i2cp {
+  background: #313b3b;
+}
+.base32 {
+  background: #313b3b;
+}
+.base64 {
+  background: #313b3b;
+}
+.type {
+  background: #9789a7;
+}
+.dest {
+  background: #9789a7;
 }
 
 

@@ -150,7 +150,7 @@ func (p *pagestring) sub_div(val string) string {
 			r += n + " : "
 			r += "</div> "
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
+			r += "class=\"" + makeclass(splitfinally[0], p.class+",content") + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
 			r += splitagain[1]
 			r += "</div> \n"
