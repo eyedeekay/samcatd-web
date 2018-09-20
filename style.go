@@ -27,6 +27,7 @@ func defaultCSS() string {
 		"  text-align: left;\n" +
 		"  border: dotted;\n" +
 		"  width: 20%\n" +
+		"  min-width: 20%\n" +
 		"  color: #84aca8;\n" +
 		"  background: #313b3b;\n" +
 		"}\n" +

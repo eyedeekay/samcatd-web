@@ -22,6 +22,7 @@ body {
   text-align: left;
   border: dotted;
   width: 20%
+  min-width: 20%
   color: #84aca8;
   background: #313b3b;
 }
