@@ -36,14 +36,9 @@ func stringify(s *[]string) string {
 func name(s string) string {
 	for _, r := range strings.Split(s, "\n") {
 		if strings.Contains(r, "name=") {
-			prename := strings.SplitN(r, "name=", 2)
-			name := strings.SplitN(prename[0], ".", 2)
+			name := strings.SplitN(r, "name=", 2)
 			if len(name) == 2 {
 				trimmedname := strings.Trim(name[1], " ")
-				returnedname := strings.Trim(trimmedname, "\n")
-				return returnedname
-			} else if len(prename) == 2 {
-				trimmedname := strings.Trim(prename[1], " ")
 				returnedname := strings.Trim(trimmedname, "\n")
 				return returnedname
 			}
