@@ -117,7 +117,7 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		if b, err := ioutil.ReadFile(s.csspath); err == nil {
 			s.cssstring = string(b)
 		} else {
-			s.cssstring = "\n" //log.Fatal(err)
+			s.cssstring = defaultCSS()
 		}
 	}
 	if s.jspath != "" {

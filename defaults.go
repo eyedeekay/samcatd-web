@@ -11,9 +11,17 @@ func defaultJS() string {
 }
 
 func defaultCSS() string {
-	r := "" +
+	r := ".btn {" +
+		"  text-align: center;" +
+		"  color: red;" +
+		"  border: dotted;" +
+		"}" +
 		"" +
-		"" +
-		""
+		".toolbar {" +
+		"  margin-left: auto;" +
+		"  margin-right: auto;" +
+		"  color: red;" +
+		"}" +
+		"\n"
 	return r
 }
