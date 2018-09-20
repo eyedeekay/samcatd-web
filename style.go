@@ -7,6 +7,13 @@ func defaultCSS() string {
 		"  background: #0e1111;\n" +
 		"  color: #84aca8;\n" +
 		"}\n" +
+		".label {\n" +
+		"  text-align: center;\n" +
+		"  border: dotted;\n" +
+		"  width: 20%\n" +
+		"  color: #9789a7;\n" +
+		"  border-color: #313b3b;\n" +
+		"}\n" +
 		".btn {\n" +
 		"  text-align: center;\n" +
 		"  border: dotted;\n" +
@@ -56,18 +63,11 @@ func defaultCSS() string {
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".parent {\n" +
-		"  margin-left: 60px;\n" +
+		"  margin-left: 4%;\n" +
 		"  border: dotted;\n" +
 		"  background: #0e1111;\n" +
 		"  width: 65%;\n" +
 		"  color: #9789a7;\n" +
-		"}\n" +
-		".label {\n" +
-		"  text-align: center;\n" +
-		"  border: dotted;\n" +
-		"  width: 35%;\n" +
-		"  color: #9789a7;\n" +
-		"  border-color: #313b3b;\n" +
 		"}\n" +
 		"#toolbar {\n" +
 		"  margin-left: auto;\n" +
