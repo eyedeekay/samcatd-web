@@ -1,0 +1,26 @@
+body {
+  background: #0e1111;
+  color: #9789a7;
+}
+
+.btn {
+  text-align: center;
+  border: dotted;
+  color: #84aca8;
+  width: 70px;
+}
+
+.toolbar {
+  margin-left: auto;
+  margin-right: auto;
+  background: #313b3b;
+  width: 420px;
+}
+
+.parent {
+  margin-left: 60px;
+  background: #0e1111;
+  color: #9789a7;
+}
+
+

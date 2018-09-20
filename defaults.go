@@ -11,7 +11,7 @@ func defaultJS() string {
 
 func defaultCSS() string {
 	r := "body {\n" +
-		"  background-color: #0e1111;\n" +
+		"  background: #0e1111;\n" +
 		"  color: #9789a7;\n" +
 		"}\n" +
 		"\n" +
@@ -22,16 +22,16 @@ func defaultCSS() string {
 		"  width: 70px;\n" +
 		"}\n" +
 		"\n" +
-		".toolbar {\n" +
+		"#toolbar {\n" +
 		"  margin-left: auto;\n" +
 		"  margin-right: auto;\n" +
-		"  background-color: #313b3b;\n" +
+		"  background: #313b3b;\n" +
 		"  width: 420px;\n" +
 		"}\n" +
 		"\n" +
 		".parent {\n" +
 		"  margin-left: 60px;\n" +
-		"  background-color: #0e1111;\n" +
+		"  background: #0e1111;\n" +
 		"  color: #9789a7;\n" +
 		"}\n" +
 		"\n"
