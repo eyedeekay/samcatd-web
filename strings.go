@@ -76,39 +76,39 @@ func makeurl(s, p string) string {
 func render_header(title, lang, desc string) string {
 	r := "<!doctype html>\n"
 	r += "<html lang=\"" + lang + "\">\n"
-	r += "<head>\n"
-	r += "  <meta charset=\"utf-8\">\n"
-	r += "  <title>" + title + "</title>\n"
-	r += "  <meta name=\"description\" content=\"" + desc + "\">\n"
-	r += "  <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\"/>\n"
-	r += "</head>\n"
-	r += "<body>\n"
+	r += "  <head>\n"
+	r += "    <meta charset=\"utf-8\">\n"
+	r += "    <title>" + title + "</title>\n"
+	r += "    <meta name=\"description\" content=\"" + desc + "\">\n"
+	r += "    <meta name=\"author\" content=\"eyedeekay\">\n"
+	r += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\"/>\n"
+	r += "  </head>\n"
+	r += "  <body>\n"
 	r += "\n"
 	return r
 }
 
 func render_bar() string {
-	r := "<div id=\"toolbar\" class=\"toolbar\">\n"
-	r += "<a href=\"/index\" id=\"btn_index\" class=\"btn\"> Home </a>\n"
-	r += "<a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>\n"
-	r += "<a href=\"/server/http\" id=\"btn_httpserver\" class=\"btn\"> HTTP Server </a>\n"
-	r += "<a href=\"/server/ssu\" id=\"btn_ssuserver\" class=\"btn\"> SSU Server </a>\n"
-	r += "<a href=\"/client/ntcp\" id=\"btn_ntcpclient\" class=\"btn\"> NTCP Client </a>\n"
-	r += "<a href=\"/client/ssu\" id=\"btn_ssuclient\" class=\"btn\"> SSU Clients </a>\n"
-	r += "</div>\n"
+	r := "  <div id=\"toolbar\" class=\"toolbar\">\n"
+	r += "    <a href=\"/index\" id=\"btn_index\" class=\"btn\"> Home </a>\n"
+	r += "    <a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>\n"
+	r += "    <a href=\"/server/http\" id=\"btn_httpserver\" class=\"btn\"> HTTP Server </a>\n"
+	r += "    <a href=\"/server/ssu\" id=\"btn_ssuserver\" class=\"btn\"> SSU Server </a>\n"
+	r += "    <a href=\"/client/ntcp\" id=\"btn_ntcpclient\" class=\"btn\"> NTCP Client </a>\n"
+	r += "    <a href=\"/client/ssu\" id=\"btn_ssuclient\" class=\"btn\"> SSU Clients </a>\n"
+	r += "  </div>\n"
 	r += "<br>\n"
-	r += "<div id=\"showhidebar\" class=\"toolbar\">\n"
+	r += "  <div id=\"showhidebar\" class=\"toolbar\">\n"
 	/*r += "<a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>"*/
-	r += "</div>\n"
+	r += "  </div>\n"
 	r += "<br>\n"
 	r += "\n"
 	return r
 }
 
 func render_footer() string {
-	r := "  <script type=\"text/javascript\" src=\"/js/scripts.js\"></script>\n"
-	r += "</body>\n"
+	r := "    <script type=\"text/javascript\" src=\"/js/scripts.js\"></script>\n"
+	r += "  </body>\n"
 	r += "</html>\n"
 	r += "\n"
 	return r
@@ -136,7 +136,7 @@ func (p *pagestring) sub_div(val string) string {
 		splitagain := strings.Split(v, "=")
 		if len(splitagain) == 2 {
 			splitfinally := strings.Split(splitagain[0], ".")
-			r += "<div "
+			r += "    <div "
 			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
 			r += splitagain[0] + " : " + splitagain[1]
@@ -150,7 +150,7 @@ func (p *pagestring) render_div(s string) string {
 	query := p.class + "," + s
 	var r string
 	for _, val := range *p.manager.List(query) {
-		r += "<div "
+		r += "  <div "
 		r += "class=\"" + makeclass(s, p.class+",parent") + "\" "
 		r += "id=\"" + makeid(condemit("_", s), p.id) + "\"> "
 		r += p.sub_div(val)

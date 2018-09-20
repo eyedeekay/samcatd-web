@@ -20,3 +20,12 @@ cssfile:
 
 jsfile:
 	cd js && ./snippet.sh
+
+cssget:
+	wget -q -O css/styles.css localhost:7957/css/styles.css
+
+jsget:
+	wget -q -O js/script.js localhost:7957/js/script.js
+
+index:
+	wget -q -O index.html localhost:7957/index
