@@ -36,9 +36,14 @@ func stringify(s *[]string) string {
 func name(s string) string {
 	for _, r := range strings.Split(s, "\n") {
 		if strings.Contains(r, "name=") {
-			name := strings.SplitN(r, "name=", 2)
+			prename := strings.SplitN(r, "name=", 2)
+			name := strings.SplitN(prename[0], ".", 2)
 			if len(name) == 2 {
 				trimmedname := strings.Trim(name[1], " ")
+				returnedname := strings.Trim(trimmedname, "\n")
+				return returnedname
+			} else if len(prename) == 2 {
+				trimmedname := strings.Trim(prename[1], " ")
 				returnedname := strings.Trim(trimmedname, "\n")
 				return returnedname
 			}
@@ -139,10 +144,15 @@ func (p *pagestring) sub_div(val string) string {
 		splitagain := strings.Split(v, "=")
 		if len(splitagain) == 2 {
 			splitfinally := strings.Split(splitagain[0], ".")
+			noleader := strings.Split(splitagain[0], ".")
+			n := noleader[0]
+			if len(noleader) == 2 {
+				n = noleader[1]
+			}
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
+			r += "class=\"" + makeclass(splitfinally[0], p.class+",label") + "\" "
 			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id+"_label") + "\" >"
-			r += splitagain[0] + " : "
+			r += n + " : "
 			r += "</div> "
 			r += "    <div "
 			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "

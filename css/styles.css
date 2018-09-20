@@ -1,4 +1,5 @@
 body {
+  float:left
   background: #0e1111;
   color: #84aca8;
 }
@@ -11,43 +12,58 @@ body {
 .inbound {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .outbound {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .i2cp {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .base32 {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .base64 {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .type {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .dest {
   text-align: right;
   border: dotted;
+  width: 70%
   border-color: #9789a7;
 }
 .parent {
   margin-left: 60px;
   border: dotted;
   background: #0e1111;
+  width: 70%
   color: #9789a7;
+}
+.label {
+  text-align: center;
+  border: dotted;
+  width: 20%
+  color: #9789a7;
+  border-color: #313b3b;
 }
 #toolbar {
   margin-left: auto;

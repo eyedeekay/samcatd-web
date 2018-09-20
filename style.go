@@ -16,43 +16,58 @@ func defaultCSS() string {
 		".inbound {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".outbound {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".i2cp {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".base32 {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".base64 {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".type {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".dest {\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
+		"  width: 65%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".parent {\n" +
 		"  margin-left: 60px;\n" +
 		"  border: dotted;\n" +
 		"  background: #0e1111;\n" +
+		"  width: 65%;\n" +
 		"  color: #9789a7;\n" +
+		"}\n" +
+		".label {\n" +
+		"  text-align: center;\n" +
+		"  border: dotted;\n" +
+		"  width: 35%;\n" +
+		"  color: #9789a7;\n" +
+		"  border-color: #313b3b;\n" +
 		"}\n" +
 		"#toolbar {\n" +
 		"  margin-left: auto;\n" +
