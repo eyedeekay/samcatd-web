@@ -32,6 +32,7 @@ body {
   width: 12%;
 }
 .content {
+  float: right;
   text-align: right;
   border: dotted;
   width: 65%;
@@ -39,24 +40,31 @@ body {
 }
 .inbound {
   background: #313b3b;
+  color: #9789a7;
 }
 .outbound {
   background: #9789a7;
+  color: #313b3b;
 }
 .i2cp {
   background: #313b3b;
+  color: #9789a7;
 }
 .base32 {
   background: #313b3b;
+  color: #9789a7;
 }
 .base64 {
   background: #313b3b;
+  color: #9789a7;
 }
 .type {
   background: #9789a7;
+  color: #313b3b;
 }
 .dest {
   background: #9789a7;
+  color: #313b3b;
 }
 
 

@@ -37,6 +37,7 @@ func defaultCSS() string {
 		"  width: 12%;\n" +
 		"}\n" +
 		".content {\n" +
+		"  float: right;\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
 		"  width: 65%;\n" +
@@ -44,24 +45,31 @@ func defaultCSS() string {
 		"}\n" +
 		".inbound {\n" +
 		"  background: #313b3b;\n" +
+		"  color: #9789a7;\n" +
 		"}\n" +
 		".outbound {\n" +
 		"  background: #9789a7;\n" +
+		"  color: #313b3b;\n" +
 		"}\n" +
 		".i2cp {\n" +
 		"  background: #313b3b;\n" +
+		"  color: #9789a7;\n" +
 		"}\n" +
 		".base32 {\n" +
 		"  background: #313b3b;\n" +
+		"  color: #9789a7;\n" +
 		"}\n" +
 		".base64 {\n" +
 		"  background: #313b3b;\n" +
+		"  color: #9789a7;\n" +
 		"}\n" +
 		".type {\n" +
 		"  background: #9789a7;\n" +
+		"  color: #313b3b;\n" +
 		"}\n" +
 		".dest {\n" +
 		"  background: #9789a7;\n" +
+		"  color: #313b3b;\n" +
 		"}\n" +
 		"\n"
 	return r
