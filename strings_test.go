@@ -24,7 +24,7 @@ func TestStringsLib(t *testing.T) {
 		t.Fatal(a)
 	}
 	b := makeclass("///test___//test", "test_id")
-	if b != "test,id,test,test" {
+	if b != "test id test test" {
 		t.Fatal(b)
 	}
 	c := makeurl(",,,,test___,,test", "test_id")
