@@ -1,6 +1,6 @@
 // +build webface
 
-package samcatwebstyle
+package samcatweb
 
 func defaultCSS() string {
 	r := "body {\n" +
