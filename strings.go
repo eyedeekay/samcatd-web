@@ -137,23 +137,20 @@ func (p *pagestring) sub_div(val string) string {
 	split := strings.Split(val, "\n")
 	var r string
 	for _, v := range split {
-		splitagain := strings.Split(v, "=")
-		if len(splitagain) == 2 {
-			splitfinally := strings.Split(splitagain[0], ".")
-			noleader := strings.Split(splitagain[0], ".")
-			n := noleader[0]
-			if len(noleader) > 1 {
-				n = noleader[len(noleader)-1]
-			}
+		if len(strings.SplitN(v, "=", 2)) == 2 {
+			prefix := strings.SplitN(v, "=", 2)[0]
+			name := strings.SplitN(v, "=", 2)[1]
+			splitprefix := strings.Split(prefix, " ")
+			option := splitprefix[len(splitprefix)-1]
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class+",label") + "\" "
-			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id+"_label") + "\" >"
-			r += n + " : "
+			r += "class=\"" + makeclass(option, p.class+",label") + "\" "
+			r += "id=\"" + makeid(condemit("_", name), p.id+"_label") + "\" >"
+			r += option + " : "
 			r += "</div> "
 			r += "    <div "
-			r += "class=\"" + makeclass(splitfinally[0], p.class+",content") + "\" "
-			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
-			r += splitagain[1]
+			r += "class=\"" + makeclass(option, p.class+",content") + "\" "
+			r += "id=\"" + makeid(condemit("_", name), p.id) + "\" >"
+			r += name
 			r += "</div> \n"
 		}
 	}
