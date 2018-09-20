@@ -97,7 +97,7 @@ func render_bar() string {
 	r += "<a href=\"/client/ssu\" id=\"btn_ssuclient\" class=\"btn\"> SSU Clients </a>"
 	r += "</div>"
 	r += "<br>"
-	r += "<div id=\"toolbar\" class=\"toolbar\">"
+	r += "<div id=\"showhidebar\" class=\"toolbar\">"
 	/*r += "<a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>"*/
 	r += "</div>"
 	r += "<br>"
@@ -151,7 +151,7 @@ func (p *pagestring) render_div(s string) string {
 	var r string
 	for _, val := range *p.manager.List(query) {
 		r += "<div "
-		r += "class=\"" + makeclass(s, p.class) + "\" "
+		r += "class=\"" + makeclass(s, p.class+",parent") + "\" "
 		r += "id=\"" + makeid(condemit("_", s), p.id) + "\" >"
 		r += p.sub_div(val)
 		r += "</div>"

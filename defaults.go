@@ -10,20 +10,20 @@ func defaultJS() string {
 }
 
 func defaultCSS() string {
-	r := "" +
-		".btn {" +
-		"  text-align: center;" +
-		"  color: #9789a7;" +
-		"  border: dotted;" +
-		"  width: 70px;" +
-		"}" +
-		"" +
-		".toolbar {" +
-		"  margin-left: auto;" +
-		"  margin-right: auto;" +
-		"  background-color: #0e1111;" +
-		"  width: 420px;" +
-		"}" +
+	r := "\n" +
+		".btn {\n" +
+		"  text-align: center;\n" +
+		"  color: #9789a7;\n" +
+		"  border: dotted;\n" +
+		"  width: 70px;\n" +
+		"}\n" +
+		"\n" +
+		".toolbar {\n" +
+		"  margin-left: auto;\n" +
+		"  margin-right: auto;\n" +
+		"  background-color: #0e1111;\n" +
+		"  width: 420px;\n" +
+		"}\n" +
 		"\n"
 	return r
 }
