@@ -96,6 +96,7 @@ func (s *pagestring) render_bar() string {
     r += "<a href=\"/client/ssu\" id=\"btn_ssuclient\" class=\"btn\"> SSU Clients </a>"
     r += "</div>"
     r += "<br>"
+    return r
 }
 
 func (s *pagestring) render_footer() string {
