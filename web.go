@@ -119,13 +119,17 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		} else {
 			s.cssstring = defaultCSS()
 		}
+	} else {
+		s.cssstring = defaultCSS()
 	}
 	if s.jspath != "" {
 		if b, err := ioutil.ReadFile(s.jspath); err == nil {
 			s.jsstring = string(b)
 		} else {
-			s.jsstring = "\n" //log.Fatal(err)
+			s.jsstring = defaultJS()
 		}
+	} else {
+		s.jsstring = defaultJS()
 	}
 	s.localService = http.NewServeMux()
 	return &s, nil

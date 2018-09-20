@@ -5,13 +5,13 @@ package samcatweb
 func defaultJS() string {
 	r := "" +
 		"" +
-		"" +
-		""
+		"\n"
 	return r
 }
 
 func defaultCSS() string {
-	r := ".btn {" +
+	r := "" +
+		".btn {" +
 		"  text-align: center;" +
 		"  color: #9789a7;" +
 		"  border: dotted;" +
