@@ -159,6 +159,7 @@ func (p *pagestring) sub_div(val string) string {
 			r += "</div> \n"
 		}
 	}
+	log.Println(r)
 	return r
 }
 
@@ -192,6 +193,7 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	log.Println("content sent")
 	fmt.Fprintln(w, render_footer())
 	log.Println("footer sent")
+	return
 }
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
