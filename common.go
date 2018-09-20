@@ -1,6 +1,7 @@
 package samcatweb
 
 import (
+	"golang.org/x/time/rate"
 	"net/http"
 )
 
@@ -15,6 +16,7 @@ type SAMWebConfig struct {
 	cssstring    string
 	jspath       string
 	jsstring     string
+	limiter      *rate.Limiter
 	pages        []*pagestring
 	manager      *sammanager.SAMManager
 	localService *http.ServeMux

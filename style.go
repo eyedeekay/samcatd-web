@@ -42,7 +42,7 @@ func defaultCSS() string {
 		"  position: relative;\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
-		"  width: 65%;\n" +
+		"  width: 75%;\n" +
 		"  border-color: #9789a7;\n" +
 		"}\n" +
 		".inbound {\n" +

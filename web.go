@@ -4,12 +4,24 @@ package samcatweb
 
 import (
 	"fmt"
+	"golang.org/x/time/rate"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 import "github.com/eyedeekay/sam-forwarder/manager"
+
+func (s *SAMWebConfig) limit(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if s.limiter.Allow() == false {
+			http.Error(w, http.StatusText(429), http.StatusTooManyRequests)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
 
 func (s *SAMWebConfig) populate() {
 	for _, i := range *s.manager.List("") {
@@ -84,7 +96,7 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 			return nil, err
 		}
 	}
-
+	s.limiter = rate.NewLimiter(1, 1)
 	s.pages = append(s.pages, &pagestring{dir: "./",
 		lang: s.lang, title: s.title,
 		url: "index", apiurl: "api/index", desc: "SAMcatd Control Panel",
