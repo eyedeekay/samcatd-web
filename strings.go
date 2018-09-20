@@ -165,7 +165,7 @@ func (p *pagestring) render_div(s string) string {
 	for _, val := range *p.manager.List(query) {
 		r += "  <div "
 		r += "class=\"" + makeclass(s, p.class+",parent") + "\" "
-		r += "id=\"" + makeid(condemit("_", s), p.id) + "\"> " + name(s)
+		r += "id=\"" + makeid(condemit("_", s), p.id) + "\"> " + name(val)
 		r += p.sub_div(val)
 		r += "  </div>\n"
 	}
