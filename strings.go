@@ -57,7 +57,7 @@ func condemit(pr, s string) string {
 func makeclass(s, p string) string {
 	replacedslashes := strings.Replace(p+","+s, "/", " ", -1)
 	replacedcommas := strings.Replace(replacedslashes, ",", " ", -1)
-    replacedunderscores := strings.Replace(replacedcommas, "_", " ", -1)
+	replacedunderscores := strings.Replace(replacedcommas, "_", " ", -1)
 	return strings.TrimPrefix(dedouble(replacedunderscores, "  ", " "), " ")
 }
 
