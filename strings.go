@@ -81,7 +81,7 @@ func render_header(title, lang, desc string) string {
 	r += "    <title>" + title + "</title>\n"
 	r += "    <meta name=\"description\" content=\"" + desc + "\">\n"
 	r += "    <meta name=\"author\" content=\"eyedeekay\">\n"
-	r += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"css/styles.css\"/>\n"
+	r += "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/styles.css\" media=\"screen\" />\n"
 	r += "  </head>\n"
 	r += "  <body>\n"
 	r += "\n"
@@ -107,7 +107,7 @@ func render_bar() string {
 }
 
 func render_footer() string {
-	r := "    <script type=\"text/javascript\" src=\"/js/scripts.js\"></script>\n"
+	r := "    <script src=\"/js/scripts.js\"></script>\n"
 	r += "  </body>\n"
 	r += "</html>\n"
 	r += "\n"
