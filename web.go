@@ -116,14 +116,14 @@ func NewSAMWebConfigFromOptions(opts ...func(*SAMWebConfig) error) (*SAMWebConfi
 		if b, err := ioutil.ReadFile(s.csspath); err == nil {
 			s.cssstring = string(b)
 		} else {
-			log.Fatal(err)
+			s.cssstring = "\n" //log.Fatal(err)
 		}
 	}
 	if s.jspath != "" {
 		if b, err := ioutil.ReadFile(s.jspath); err == nil {
 			s.jsstring = string(b)
 		} else {
-			log.Fatal(err)
+			s.jsstring = "\n" //log.Fatal(err)
 		}
 	}
 	s.localService = http.NewServeMux()

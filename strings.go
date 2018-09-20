@@ -149,7 +149,7 @@ func (p *pagestring) render_apiurl(s string) string {
 
 func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.URL()), "/", ",", -1), ",,", ",")
-	log.Println("Responnding to the page request", r.URL.Path)
+	log.Println("Responding to the page request", r.URL.Path)
 	fmt.Fprintln(w, p.render_header())
 	fmt.Fprintln(w, p.render_div(query))
 	fmt.Fprintln(w, p.render_footer())
@@ -157,6 +157,6 @@ func (p *pagestring) Say(w http.ResponseWriter, r *http.Request) {
 
 func (p *pagestring) SayAPI(w http.ResponseWriter, r *http.Request) {
 	query := dedouble(strings.Replace(strings.TrimPrefix(r.URL.Path, p.APIURL()), "/", ",", -1), ",,", ",")
-	log.Println("Responnding to the API request", r.URL.Path, p.render_apiurl(query))
+	log.Println("Responding to the API request", r.URL.Path, p.render_apiurl(query))
 	fmt.Fprintln(w, p.render_apiurl(query))
 }
