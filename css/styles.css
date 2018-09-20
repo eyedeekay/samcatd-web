@@ -19,6 +19,7 @@ body {
 }
 .label {
   float: left;
+  display: block;
   text-align: left;
   border: dotted;
   width: 20%
@@ -33,7 +34,7 @@ body {
   width: 12%;
 }
 .content {
-  float: right;
+  position: relative;
   text-align: right;
   border: dotted;
   width: 65%;

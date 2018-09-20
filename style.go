@@ -24,6 +24,7 @@ func defaultCSS() string {
 		"}\n" +
 		".label {\n" +
 		"  float: left;\n" +
+		"  display: block;\n" +
 		"  text-align: left;\n" +
 		"  border: dotted;\n" +
 		"  width: 20%\n" +
@@ -38,7 +39,7 @@ func defaultCSS() string {
 		"  width: 12%;\n" +
 		"}\n" +
 		".content {\n" +
-		"  float: right;\n" +
+		"  position: relative;\n" +
 		"  text-align: right;\n" +
 		"  border: dotted;\n" +
 		"  width: 65%;\n" +
