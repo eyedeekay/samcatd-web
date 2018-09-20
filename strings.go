@@ -142,7 +142,7 @@ func (p *pagestring) sub_div(val string) string {
 			splitfinally := strings.Split(splitagain[0], ".")
 			noleader := strings.Split(splitfinally[0], ".")
 			n := noleader[0]
-			if len(noleader) == 2 {
+			if len(noleader) > 1 {
 				n = noleader[1]
 			}
 			r += "    <div "
