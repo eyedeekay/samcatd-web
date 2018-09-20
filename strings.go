@@ -87,6 +87,17 @@ func (s *pagestring) render_header() string {
 	return r
 }
 
+func (s *pagestring) render_bar() string {
+    r := "<div id=\"toolbar\" class=\"toolbar\">"
+    r += "<a href=\"/server/ntcp\" id=\"btn_ntcpserver\" class=\"btn\"> NTCP Server </a>"
+    r += "<a href=\"/server/http\" id=\"btn_httpserver\" class=\"btn\"> HTTP Server </a>"
+    r += "<a href=\"/server/ssu\" id=\"btn_ssuserver\" class=\"btn\"> SSU Server </a>"
+    r += "<a href=\"/client/ntcp\" id=\"btn_ntcpclient\" class=\"btn\"> NTCP Client </a>"
+    r += "<a href=\"/client/ssu\" id=\"btn_ssuclient\" class=\"btn\"> SSU Clients </a>"
+    r += "</div>"
+    r += "<br>"
+}
+
 func (s *pagestring) render_footer() string {
 	r := "  <script src=\"js/scripts.js\"></script>"
 	r += "</body>"
