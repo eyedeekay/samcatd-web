@@ -3,8 +3,6 @@
 package samcatweb
 
 func defaultJS() string {
-	r := "" +
-		"" +
-		"\n"
+	r := "\n"
 	return r
 }

@@ -63,6 +63,7 @@ func makeclass(s, p string) string {
 func makeid(s, p string) string {
 	replacedslashes := strings.Replace(p+"_"+s, "/", "_", -1)
 	replacedcommas := strings.Replace(replacedslashes, ",", "_", -1)
+    replacedperiods := strings.Replace(replacedcommas, ".", "_", -1)
 	return strings.Replace(dedouble(replacedcommas, "__", "_"), " ", "", -1)
 }
 
@@ -137,7 +138,7 @@ func (p *pagestring) sub_div(val string) string {
 			splitfinally := strings.Split(splitagain[0], ".")
 			r += "<div "
 			r += "class=\"" + makeclass(splitfinally[0], p.class) + "\" "
-			r += "id=\"" + makeid(condemit("_", splitfinally[0]), p.id) + "\" >"
+			r += "id=\"" + makeid(condemit("_", splitagain[0]), p.id) + "\" >"
 			r += splitagain[0] + " : " + splitagain[1]
 			r += "</div> \n"
 		}

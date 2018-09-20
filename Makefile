@@ -17,3 +17,6 @@ test:
 
 cssfile:
 	cd css && ./snippet.sh
+
+jsfile:
+	cd js && ./snippet.sh
